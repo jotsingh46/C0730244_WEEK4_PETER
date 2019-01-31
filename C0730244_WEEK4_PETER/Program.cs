@@ -6,49 +6,73 @@ namespace C0730244_WEEK4_PETER
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            CountrySide Ontario = new CountrySide();
+            Ontario.run();
+        }
+    }
+    class Village
+    {
+        public static int numberOfVillages = 0;
+        public Village nextVillage;
+        public Village previousVillage;
+        public string VillageName;
+        public bool isAstrildeHere = false;
+
+        public Village()
+        {
+            Village.numberOfVillages++;
         }
 
-        class Village
+        class CountrySide
         {
-            public static int numberOfVillages = 0;
-            public Village nextVillage;
-            public Village previousVillage;
-            public string VillageName;
-            public bool isAstrildeHere = false;
+            public Village Maple;
+            public Village Toronto;
+            public Village Ajax;
+            public Village Head;
+            public Village Tail;
+            public Village Temp;
 
-            public Village()
+            public void run()
             {
-                Village.numberOfVillages++;
+                this.MapInitializer();
+                this.LookForAstridile();
             }
 
-            class Countryside
+            public void MapInitializer()
             {
-                public Village Maple;
-                public Village Toronto;
-                public Village Ajax;
+                Maple = new Village();
+                Maple.VillageName = "Maple";
+                Maple.previousVillage = null;
+                Maple.nextVillage = Toronto;
+                Maple.isAstrildeHere = true;
+                Toronto = new Village();
+                Toronto.previousVillage = Maple;
+                Toronto.VillageName = "Toronoto";
+                Toronto.nextVillage = Ajax;
+                Ajax = new Village();
+                Ajax.VillageName = "Ajax";
+                Ajax.previousVillage = Toronto;
+                Ajax.nextVillage = null;
+                //Ajax.isAstrildeHere = true;
+            }
 
-                public void MapInitializer()
-                {
-                    Maple = new Village();
-                    Maple.VillageName = "Maple";
-                    Maple.previousVillage = null;
-                    Maple.nextVillage = Toronto;
-                    Toronto = new Village();
-                    Toronto.VillageName = "Toronoto";
-                    Toronto.previousVillage = Maple;
-                    Toronto.nextVillage = Ajax;
-                    Ajax = new Village();
-                    Ajax.VillageName = "Ajax";
-                    Ajax.previousVillage = Toronto;
-                    Ajax.nextVillage = null;
-                    Ajax.isAstrildeHere = true;
-                }
-                public void LookForAstridileHere()
-                {
+            public void LookForAstridile()
+            {
 
+                Head = Maple;
+                if (Head.isAstrildeHere)
+                {
+                    Console.WriteLine("Yeah Astrilde is in" + Head.VillageName);
+                    Console.ReadLine();
                 }
+
+                //while(true)
+                //{
+
+                // }
+
             }
         }
     }
 }
+
